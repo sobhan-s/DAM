@@ -1,18 +1,20 @@
 {
-  "name": "@dam/constants",
+  "name": "@dam/authService",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
-  "exports": {
-    "./constants": "./src/constants.ts"
-  },
   "scripts": {
+    "dev": "nodemon",
+    "start": "tsc -b && node ./dist/index.js",
+    "build": "tsc -b",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "@dam/eslint-config": "workspace:*",
     "@dam/typescript-config": "workspace:*"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
   },
   "keywords": [],
   "author": "",

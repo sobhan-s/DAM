@@ -10,16 +10,14 @@
     "start": "tsc -b && node ./dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "devDependencies": {
-    "@dam/config": "workspace:*",
-    "@dam/eslint-config": "workspace:*",
-    "@dam/typescript-config": "workspace:*",
-    "@dam/constants": "workspace:*"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@dam/config": "workspace:*",
+    "@dam/eslint-config": "workspace:*",
+    "@dam/typescript-config": "workspace:*",
+    "@dam/constants": "workspace:*",
     "@types/express": "^5.0.6",
     "express": "^5.2.1",
     "http-proxy-middleware": "^3.0.5",
