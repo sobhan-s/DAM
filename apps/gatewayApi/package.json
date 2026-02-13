@@ -1,0 +1,28 @@
+{
+  "name": "@dam/gatewayApi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon",
+    "build": "tsc -b",
+    "start": "tsc -b && node ./dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@dam/config": "workspace:*",
+    "@dam/eslint-config": "workspace:*",
+    "@dam/typescript-config": "workspace:*",
+    "@dam/constants": "workspace:*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^5.0.6",
+    "express": "^5.2.1",
+    "http-proxy-middleware": "^3.0.5",
+    "nodemon": "^3.1.11"
+  }
+}
