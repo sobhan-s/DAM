@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "tsc -b",
-    "start": "tsc -b && node ./dist/index.js",
+    "start": "node ./dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,11 +15,11 @@
   "license": "ISC",
   "dependencies": {
     "@dam/config": "workspace:*",
+    "@dam/constants": "workspace:*",
     "@dam/eslint-config": "workspace:*",
     "@dam/typescript-config": "workspace:*",
-    "@dam/constants": "workspace:*",
-    "@types/express": "^5.0.6",
-    "express": "^5.2.1",
+    "@fastify/http-proxy": "^11.4.1",
+    "fastify": "^5.7.4",
     "http-proxy-middleware": "^3.0.5",
     "nodemon": "^3.1.11"
   }

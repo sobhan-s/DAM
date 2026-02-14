@@ -1,73 +1,22 @@
-import js from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import prettier from 'eslint-plugin-prettier';
-import unicorn from 'eslint-plugin-unicorn';
-import filenames from 'eslint-plugin-filenames';
-import simpleImportSort from 'eslint-plugin-simple-import-sort';
+FROM node:22-alpine
 
-export default [
-  js.configs.recommended,
+WORKDIR /app
 
-  ...tseslint.configs.recommended,
+RUN corepack enable && corepack prepare pnpm@latest --activate
 
-  {
-    files: [
-      '**/*.ts',
-      '**/*.tsx',
-      '**/*.js',
-      '**/*.jsx',
-      '**/*.json',
-      '**/*.md',
-    ],
+# ENV NODE_ENV=production
 
-    languageOptions: {
-      ecmaVersion: 2022,
-      sourceType: 'module',
-    },
+# Copy everything
+COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
+COPY apps ./apps
+COPY packages ./packages
 
-    plugins: {
-      prettier,
-      unicorn,
-      filenames,
-      'simple-import-sort': simpleImportSort,
-    },
+# Install dependencies
+RUN pnpm install --frozen-lockfile
 
-    ignores: ['dist/**', 'node_modules/**', '.turbo/**'],
+# Build gatewayApi
+RUN pnpm --filter gatewayApi... build
 
-    rules: {
-      'prettier/prettier': 'error',
-      '@typescript-eslint/no-unused-vars': 'warn',
-      '@typescript-eslint/no-explicit-any': 'warn',
-      'filenames/match-regex': [
-        'error',
-        '^[a-z][a-zA-Z0-9]*\\.[a-z][a-zA-Z0-9]*$',
-        true,
-      ],
-      camelcase: ['error', { properties: 'never' }],
-      '@typescript-eslint/naming-convention': [
-        {
-          selector: 'variableLike',
-          format: ['camelCase'],
-          leadingUnderscore: 'allow',
-        },
-        {
-          selector: 'function',
-          format: ['camelCase'],
-        },
-        {
-          selector: 'typeLike',
-          format: ['PascalCase'],
-        },
-        {
-          selector: 'enum',
-          format: ['PascalCase'],
-        },
-        {
-          selector: 'variable',
-          modifiers: ['const'],
-          format: ['camelCase', 'UPPER_CASE'],
-        },
-      ],
-    },
-  },
-];
+EXPOSE 8000
+
+CMD ["pnpm", "--filter", "gatewayApi", "start"]

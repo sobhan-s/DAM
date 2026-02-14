@@ -9,7 +9,6 @@
     "format:check": "prettier --check .",
     "check-types": "turbo run check-types",
     "test:commit": "pnpm run lint && pnpm run check-types && pnpm run format:check",
-    "prepare": "husky",
     "commitlint": "commitlint --edit"
   },
   "devDependencies": {
